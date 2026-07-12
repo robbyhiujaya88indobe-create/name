@@ -1,1 +1,113 @@
-# name
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator Ucapan Spesial</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Menggunakan gambar latar belakang langsung (Unsplash) */
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfXa5U60BhvsH69xM4lRcJ0fs14e57WN7AbbLRD4dDQA&s=10'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 350px;
+        }
+
+        h2 { color: #333; margin-bottom: 5px; }
+        p { color: #666; font-size: 14px; margin-bottom: 20px; }
+        
+        input[type="text"] {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 96%;
+            padding: 10px;
+            background-color: #ff4757; /* Mengubah warna tombol jadi lebih ceria */
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover { background-color: #ff6b81; }
+
+        #hasil {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 16px;
+            padding: 10px;
+            border-radius: 8px;
+            line-height: 1.5;
+        }
+        /* Mengubah warna tema hasil agar cocok dengan suasana perayaan */
+        .ultah { color: #721c24; background-color: #f8d7da; border: 1px solid #f5c6cb; }
+        .biasa { color: #155724; background-color: #d4edda; border: 1px solid #c3e6cb; }
+        .peringatan { color: #856404; background-color: #fff3cd; border: 1px solid #ffeeba; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>🎉 Kejutan Ucapan</h2>
+    <p>Ketik namamu untuk melihat ucapan spesial!</p>
+    
+    <input type="text" id="inputNama" placeholder="Siapa nama kamu?">
+    <button onclick="cekUcapan()">Buka Ucapan</button>
+    
+    <div id="hasil" style="display: none;"></div>
+</div>
+
+<script>
+    // 1. Daftar nama orang yang sedang ulang tahun / hari spesial
+    const daftarSpesial = ["budi", "andi", "siti", "rian", "deni",];
+
+    // 2. Logika memunculkan ucapan
+    function cekUcapan() {
+        const nama = document.getElementById("inputNama").value.trim();
+        const hasilDiv = document.getElementById("hasil");
+        
+        hasilDiv.style.display = "block";
+
+        if (nama) {
+            // Cek apakah nama ada di daftar hari spesial
+            if (daftarSpesial.includes(nama.toLowerCase())) {
+                hasilDiv.className = "ultah";
+                hasilDiv.innerHTML = `🎂 Selamat Ulang Tahun, ${nama}! 🎉<br>Semoga panjang umur, sehat selalu, dan semua impianmu tercapai! ✨`;
+            } else {
+                // Ucapan motivasi biasa untuk nama yang tidak ada di daftar
+                hasilDiv.className = "biasa";
+                hasilDiv.innerHTML = `Halo, ${nama}! ✨<br>Semoga harimu menyenangkan dan tetap semangat menjalani aktivitas! 🚀`;
+            }
+        } else {
+            hasilDiv.className = "peringatan";
+            hasilDiv.innerHTML = "Silakan ketik nama kamu terlebih dahulu.";
+        }
+    }
+</script>
+
+</body>
+</html>
